@@ -2,12 +2,16 @@
 $(function() {
 	// Login sequence
 	loading();
-	$("#username").val("username");
-	$("#password").focus();
-	$("#password").val("password");
-	$('[name="pw"]').val('password');
-	$('[name="theform"]').submit();
-
+	chrome.storage.sync.get("username", function(obj) {
+		console.log(obj["username"]);
+		$("#username").val(obj["username"]);
+	});
+	chrome.storage.sync.get("password", function(obj) {
+		$("#password").focus();
+		$("#password").val(obj["password"]);
+		$('[name="pw"]').val(obj["password"]);
+		$('[name="theform"]').submit();
+	});
 });
 
 function loading() {
@@ -15,4 +19,3 @@ function loading() {
 	var path = chrome.extension.getURL('/img/loading.svg');
 	$('[name="theform"]').after(`<h2>Logging you in...</h2><div style='margin: auto;'><img src='${path}'></img></div>`);
 }
-

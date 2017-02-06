@@ -16,7 +16,8 @@
   	"permissions": [
   		"webRequest",
   		"webRequestBlocking",
-  		"https://weblogin.bu.edu/lib/scripts/BUweblogin.js"
+  		"https://weblogin.bu.edu/lib/scripts/BUweblogin.js",
+  		"storage"
   	],
   	"web_accessible_resources": [
     	"img/loading.svg"

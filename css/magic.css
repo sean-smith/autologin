@@ -1,3 +1,15 @@
+.success {
+	border-radius: 4px;
+	background-color: #dff0d8;
+	border-width: 1px;
+	border-color: #d0e9c6;
+	padding: 6px 12px 6px 12px;
+	font-size: 14px;
+	color: #3c763d;
+	margin: 5px;
+	display: none;
+}
+
 .center {
 	margin-left: 50%;
 	margin-right: 50%;
