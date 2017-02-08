@@ -32,5 +32,6 @@
 		"48": "img/lock_48x48.png",
 		"128": "img/lock_128x128.png"
 	},
+	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
 	"manifest_version": 2
 }
