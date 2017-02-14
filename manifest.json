@@ -3,7 +3,7 @@
     "name": "BU Kerberos AutoLogin",
     "short_name": "AutoLogin",
     "description" : "Automatically logs you into BU Kerberos.",
-    "version": "1.0.1",
+    "version": "2.0",
     "content_scripts": [
         {
             "matches": ["https://weblogin.bu.edu/*", "https://shib.bu.edu/*", "https://shib2.bu.edu/*"],
