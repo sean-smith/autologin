@@ -1,34 +1,31 @@
 
 $(function() {
-    // Login sequence [shib.bu.edu, shib2.bu.edu]
-    if (["shib.bu.edu", "shib2.bu.edu"].includes(window.location.hostname)) {
-        loading("form");
-        chrome.storage.sync.get("username", function(obj) {
-            document.getElementById('j_username').value = obj["username"];
-        });
-        chrome.storage.sync.get("password", function(obj) {
-            document.getElementById('j_password').value = obj["password"];
-            if (window.location.hostname === "shib2.bu.edu") {
-                $(".input-submit").click();
-            } else {
-                $("button").click();
-            }
-        });
-        return;
-    }
-    // Login sequence [weblogin.bu.edu]
-    loading('[name="theform"]');
-    chrome.storage.sync.get("username", function(obj) {
-        console.log(obj["username"]);
-        $("#username").val(obj["username"]);
-    });
-    chrome.storage.sync.get("password", function(obj) {
-        $("#password").focus();
-        $("#password").val(obj["password"]);
-        $('[name="pw"]').val(obj["password"]);
-        $('[name="theform"]').submit();
+    chrome.storage.sync.get(["username", "password"], function(credentials) {
+        fill_and_submit(credentials["username"], credentials["password"]);
     });
 });
+
+function fill_and_submit(username, password) {
+    if (window.location.hostname === "shib.bu.edu") {
+        loading("form");
+        $('#j_username').val(username);
+        $('#j_password').val(password);
+        $("button").click();
+    }
+    else if (window.location.hostname === "shib2.bu.edu") {
+        loading("form");
+        $('#j_username').val(username);
+        $('#j_password').val(password);
+        $(".input-submit").click();
+    }
+    else if (window.location.hostname === "weblogin.bu.edu") {
+        loading('[name="theform"]');
+        $("#username").val(username);
+        $("#password").val(password);
+        $('[name="pw"]').val(password);
+        $('[name="theform"]').submit();
+    }
+}
 
 function loading(selector) {
     $(selector).hide();
